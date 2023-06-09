@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+llama-index = "*"
+python-docx = "*"
+requests = "*"
+langchain = "*"
+unstructured = "*"
+google-api-python-client = "*"
+google-auth-httplib2 = "*"
+google-auth-oauthlib = "*"
+dropbox = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
