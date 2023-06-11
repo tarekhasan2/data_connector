@@ -6,6 +6,9 @@ from langchain.document_loaders import UnstructuredPowerPointLoader as powerpoin
 from Google import Create_Service
 import dropbox
 from utils import download_file
+import mobi
+import html2text
+import os
 
 
 def extract_csv(url, file_extention):
@@ -17,7 +20,6 @@ def extract_csv(url, file_extention):
 
 	content = "".join(doc.text for doc in documents)
 
-	print(content)
 	date_time 	= ''
 	title 		= ''
 	author 		= ''
@@ -39,7 +41,6 @@ def extract_text(url, file_extention):
 
 	content = "".join(line for line in lines)
 
-	print(content)
 	date_time 	= ''
 	title 		= ''
 	author 		= ''
@@ -54,7 +55,7 @@ def extract_text(url, file_extention):
 
 def extract_rdf(url, file_extention):
 	file_downloaded_path = download_file(url, file_extention)
-
+	
 	RDFReader = download_loader("RDFReader")
 
 	loader = RDFReader()
@@ -62,7 +63,6 @@ def extract_rdf(url, file_extention):
 
 	content = "".join(doc.text for doc in documents)
 
-	print(content)
 	date_time 	= ''
 	title 		= ''
 	author 		= ''
@@ -130,7 +130,6 @@ def extract_doc_docx(url, file_extention):
 
 	documents = loader.load_data(file=Path(file_downloaded_path))
 	content = "".join(doc.text for doc in documents)
-	
 
 	date_time 	= ''
 	title 		= ''
@@ -146,17 +145,26 @@ def extract_doc_docx(url, file_extention):
 
 
 
-### WORKING ON IT
-# def extract_mobi(url):
-	# with open('files/tns.mobi', 'rb') as mobi_file:
-	# 	mobi = Mobipocket(mobi_file)
-
+def extract_mobi(url):
+	file_downloaded_path = download_file(url)
 	
-	# content = mobi.content
-	# print(content)
+	filename="files/tns.mobi"
+	tempdir, filepath = mobi.extract(filename)
+	file = open(filepath, "r")
+	content = file.read()
+	content = html2text.html2text(content)
 
+	date_time 	= ''
+	title 		= ''
+	author 		= ''
 
-
+	return {
+		'source_url': url, 
+		'date_time'	: date_time, 
+		'title'		: title, 
+		'author'	: author, 
+		'content'	: content
+	}
 
 
 def extract_epub(url, file_extention):
@@ -190,7 +198,7 @@ def extract_pdfs(url, file_extention):
 	documents = loader.load_data(file=Path(file_downloaded_path))
 	
 	content = "".join(doc.text for doc in documents)
-	print(content)
+
 	date_time 	= ''
 	title 		= ''
 	author 		= ''

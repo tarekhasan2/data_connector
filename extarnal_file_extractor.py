@@ -1,47 +1,11 @@
 from pathlib import Path
 from llama_index import download_loader, GPTVectorStoreIndex
 from langchain.document_loaders import UnstructuredPowerPointLoader as powerpointLoader
+from langchain.document_loaders import NotionDBLoader as notionLoader
+
 from Google import Create_Service
 import dropbox
 import requests
-
-
-### WORKING ON IT 
-# def extract_dropbox_doc(url):  
-# 	#token = 'sl.Bf8Dz7-leDivqSpvoc-jftFOhD517GcSGiEyqqBx4Ag7JjYvq6HDWs0ReBDDc2VgcEsayqPVhtm8MbVdfvV0HM9mXPxD1VvL6fmqrUTeKwfiuS_RFdMhRylRmsHUPJ9-QSjkt5EO'
-
-# 	dbx = dropbox.Dropbox(token)
-	
-# 	split_url = url.split('fi/')[1]
-# 	file_path_dropbox = split_url.split('/')[0]
-# 	file_path_dropbox = f'id:{file_path_dropbox}'
-# 	file_path_dropbox = 'id:94qvdehf27b37m0o89swvu03n'
-
-# 	file_path_local = f'files/{file_path_dropbox}'
-# 	print(file_path_local)
-# 	dbx.files_download_to_file(file_path_local, file_path_dropbox)
-
-# 	DocxReader = download_loader("DocxReader")
-# 	loader = DocxReader()
-
-# 	documents = loader.load_data(file=Path(file_path_local))
-# 	content = "".join(doc.text for doc in documents)
-	
-# 	print(content)
-
-# 	date_time 	= ''
-# 	title 		= ''
-# 	author 		= ''
-
-# 	return {
-# 		'source_url': url, 
-# 		'date_time'	: date_time, 
-# 		'title'		: title, 
-# 		'author'	: author, 
-# 		'content'	: content
-# 	}
-
-
 
 
 
@@ -62,7 +26,11 @@ def extract_google_slide(url):
 	content = ''
 	slides = presentation.get('slides')
 	for slide in slides:
-		for element in slide['pageElements']:
+		try:
+			page_element = slide['pageElements']
+		except:
+			continue
+		for element in page_element:
 			try:
 				text_in_element = element['shape']['text']
 			except:
@@ -84,8 +52,6 @@ def extract_google_slide(url):
 		'author'	: author, 
 		'content'	: content
 	}
-
-
 
 
 
@@ -117,14 +83,6 @@ def extract_google_doc(url):
 	}
 
 
-### WORKING ON IT
-# def extract_notion_doc(url):
-# 	NotionPageReader = download_loader('NotionPageReader')
-	
-# 	integration_token = os.getenv("NOTION_INTEGRATION_TOKEN")
-# 	page_ids = ["<page_id>"]
-# 	reader = NotionPageReader(integration_token=integration_token)
-# 	documents = reader.load_data(page_ids=page_ids)
 
 
 

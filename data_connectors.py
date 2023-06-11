@@ -1,5 +1,5 @@
 
-from file_extractor import extract_csv, extract_rdf, extract_text, extract_markdown, extract_powerpoint, extract_doc_docx, extract_epub, extract_pdfs
+from file_extractor import extract_csv, extract_rdf, extract_text, extract_markdown, extract_powerpoint, extract_doc_docx, extract_epub, extract_pdfs, extract_mobi
 from extarnal_file_extractor import extract_google_slide, extract_google_doc
 
 
@@ -22,49 +22,64 @@ def main():
 
 	if file_type == '1':
 		file_extention = '.pdf'
-		extract_pdfs(source_url, file_extention)
+		json_data = extract_pdfs(source_url, file_extention)
 	
 	elif file_type == '2':
 		file_extention = '.epub'
-		extract_epub(source_url, file_extention)
+		json_data = extract_epub(source_url, file_extention)
 
 	elif file_type == '3':
 		file_extention = '.doc'
-		extract_doc_docx(source_url, file_extention)
+		json_data = extract_doc_docx(source_url, file_extention)
 
 	elif file_type == '4':
 		file_extention = '.docx'
-		extract_doc_docx(source_url, file_extention)
+		json_data = extract_doc_docx(source_url, file_extention)
 
 	elif file_type == '5':
 		file_extention = '.pptx'
-		extract_powerpoint(source_url, file_extention)
+		json_data = extract_powerpoint(source_url, file_extention)
 
 	elif file_type == '6':
 		file_extention = '.md'
-		extract_markdown(source_url, file_extention)
+		json_data = extract_markdown(source_url, file_extention)
 
 	elif file_type == '7':
 		file_extention = '.rdf'
-		extract_rdf(source_url, file_extention)
+		json_data = extract_rdf(source_url, file_extention)
 
 	elif file_type == '8':
 		file_extention = '.txt'
-		extract_text(source_url, file_extention)
+		json_data = extract_text(source_url, file_extention)
 
 	elif file_type == '9':
 		file_extention = '.csv'
-		extract_csv(source_url, file_extention)
+		json_data = extract_csv(source_url, file_extention)
 
 	elif file_type == '10':
-		extract_google_doc(source_url)
+		json_data = extract_google_doc(source_url)
 
 	elif file_type == '11':
-		extract_google_slide(source_url)
+		json_data = extract_google_slide(source_url)
 
 	else:
 		print("Please type the correct number from 1-11")
+		json_data = {}
 
-main()
+	print(json_data)
 
 
+
+
+if __name__ == "__main__":
+    main()
+
+
+# PDF: https://book.thenetworkstate.com/tns.pdf
+# EPUB: https://filesamples.com/samples/ebook/epub/Around%20the%20World%20in%2028%20Languages.epub
+# DOC or DOCx: https://api.abcdoffice.com/cache/files/data/a7WKWYKt3VYueuo_6832/output.docx/new_document-created_by_abcdpdf.docx?md5=j5YUnkPyzlcXd6p4pfnsCg&expires=1686460170&filename=new_document-created_by_abcdpdf.docx
+# PPTX: https://k4f4w9c2.stackpathcdn.com/wp-content/uploads/01_big_files_kim7/2023_best_ppt/Happy%20Independence%20Day%20PowerPoint%20Templates.pptx
+# md: 
+# rdf:
+# text: https://filesamples.com/samples/document/txt/sample3.txt
+# csv: https://www.data.va.gov/api/views/feae-sz69/rows.csv?accessType=DOWNLOAD

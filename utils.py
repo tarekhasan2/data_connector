@@ -4,14 +4,17 @@ import requests
 
 ### WORKING ON IT
 def get_the_title():
+
 	return None 
 
 ### WORKING ON IT
 def get_publish_date():
+
 	return None 
 
 ### WORKING ON IT
 def get_authur_name():
+	
 	return None
 
 
