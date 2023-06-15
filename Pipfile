@@ -15,6 +15,9 @@ google-auth-oauthlib = "*"
 dropbox = "*"
 notion = "*"
 mobi = "*"
+hnswlib = "*"
+chromadb = "*"
+llama-hub = "*"
 
 [dev-packages]
 

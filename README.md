@@ -30,7 +30,7 @@
 
 ### Example urls for texting...
 
-# PDF: https://book.thenetworkstate.com/tns.pdf
+# PDF: https://www.junkybooks.com/administrator/thebooks/64459b396311b-agroforestry-and-biodiversity-conservation-in-tropical-landscapes.pdf
 # EPUB: https://filesamples.com/samples/ebook/epub/Around%20the%20World%20in%2028%20Languages.epub
 # DOC or DOCx: https://api.abcdoffice.com/cache/files/data/a7WKWYKt3VYueuo_6832/output.docx/new_document-created_by_abcdpdf.docx?md5=j5YUnkPyzlcXd6p4pfnsCg&expires=1686460170&filename=new_document-created_by_abcdpdf.docx
 # PPTX: https://k4f4w9c2.stackpathcdn.com/wp-content/uploads/01_big_files_kim7/2023_best_ppt/Happy%20Independence%20Day%20PowerPoint%20Templates.pptx
